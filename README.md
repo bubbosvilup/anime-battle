@@ -26,18 +26,18 @@ Anime Battle is a turn-based battle game where players select a team of anime ch
   - Display of 1v1 role-based matchups
   - Winner and loser indication placeholders
   - Battle output text area for match descriptions
+  - Animated background (GIF or CSS animations)
+  - Background music integration
+  - Improved button interactions & hover effects
+  - Adjustable game settings (only volume for now)
 
 ### 🚧 In Progress
 
 - **Enhanced UI/UX**
-
-  - Animated background (GIF or CSS animations)
-  - Background music integration
-  - Improved button interactions & hover effects
+- choice and battle page aestethic
 
 - **How to Play & Settings Pages**
-  - Detailed rules & guide for new players
-  - Adjustable game settings (future scope)
+  - Detailed rules & guide for new player
 
 ### 🔜 Upcoming Features
 
