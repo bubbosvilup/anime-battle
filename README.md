@@ -136,5 +136,5 @@
 **Commit message suggestion:**
 
 ```sh
-git commit -m "Added Characters modal with functional carousel, fixed audio mute sync issue"
+
 ```
