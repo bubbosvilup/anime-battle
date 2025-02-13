@@ -2,7 +2,8 @@ import { useState, useEffect, useRef } from "react";
 import { Howl } from "howler";
 import BattlebornTitle from "../components/BattlebornTitle";
 import EmberParticles from "../components/EmberParticles";
-import CharactersModal from "../components/CharactersModal"; // Import the modal
+import CharactersModal from "../components/CharactersModal";
+import HowToModal from "../components/HowToModal";
 
 export default function StartMenu() {
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
@@ -10,6 +11,7 @@ export default function StartMenu() {
   const [isPlaying, setIsPlaying] = useState(true);
   const [volume, setVolume] = useState(0.5);
   const soundRef = useRef(null);
+  const [isHowToPlayOpen, setIsHowToPlayOpen] = useState(false);
 
   useEffect(() => {
     soundRef.current = new Howl({
@@ -68,7 +70,10 @@ export default function StartMenu() {
         </button>
 
         {/* HOW TO PLAY button */}
-        <button className="px-6 py-3 bg-gray-700 text-white rounded-lg text-xl transition-transform duration-300 hover:bg-gray-600 hover:scale-105">
+        <button
+          onClick={() => setIsHowToPlayOpen(true)}
+          className="px-6 py-3 bg-gray-700 text-white rounded-lg text-xl transition-transform duration-300 hover:bg-gray-600 hover:scale-105"
+        >
           How to Play
         </button>
 
@@ -80,6 +85,13 @@ export default function StartMenu() {
           Characters
         </button>
       </div>
+
+      {isHowToPlayOpen && (
+        <HowToModal onClose={() => setIsHowToPlayOpen(false)} />
+      )}
+      {isCharactersOpen && (
+        <CharactersModal onClose={() => setIsCharactersOpen(false)} />
+      )}
 
       {/* Bottom-right icons */}
       <div className="absolute bottom-4 right-4 flex flex-col gap-2">
