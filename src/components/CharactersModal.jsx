@@ -67,7 +67,7 @@ export default function CharactersModal({ onClose }) {
             return (
               <div
                 key={index}
-                className={`absolute transition-all duration-500 transform ${position}`}
+                className={`absolute transition-transform duration-700 ease-in-out transform ${position}`}
               >
                 <div className="relative w-[256px] h-[384px] bg-[#ffd200] rounded-xs shadow-lg border-2 flex flex-col items-center justify-center">
                   <img
