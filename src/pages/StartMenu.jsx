@@ -4,6 +4,7 @@ import BattlebornTitle from "../components/BattlebornTitle";
 import EmberParticles from "../components/EmberParticles";
 import CharactersModal from "../components/CharactersModal";
 import HowToModal from "../components/HowToModal";
+import { useNavigate } from "react-router-dom";
 
 export default function StartMenu() {
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
@@ -12,6 +13,7 @@ export default function StartMenu() {
   const [volume, setVolume] = useState(0.5);
   const soundRef = useRef(null);
   const [isHowToPlayOpen, setIsHowToPlayOpen] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     soundRef.current = new Howl({
@@ -65,7 +67,10 @@ export default function StartMenu() {
         }`}
       >
         {/* START button */}
-        <button className="px-6 py-3 bg-blue-500 text-white rounded-lg text-xl transition-transform duration-300 hover:bg-blue-700 hover:scale-105">
+        <button
+          onClick={() => navigate("/choice")}
+          className="px-6 py-3 bg-blue-500 text-white rounded-lg text-xl transition-transform duration-300 hover:bg-blue-700 hover:scale-105"
+        >
           Start
         </button>
 
