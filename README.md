@@ -10,6 +10,15 @@
 
 ### ✅ Completed
 
+📌 Updated RoleBox and Choice logic 🎯
+
+- Removed "Assign" button in RandomizationBox.jsx, allowing direct role assignment.
+- Added automatic role highlighting in RoleBox.jsx, only for unassigned roles when a character is ready.
+- Improved user flow:
+  -Players now click directly on a role to assign the generated character.
+  -Highlighting disappears once a role is filled.
+  -"TO BATTLE!" button activates when all roles are assigned.
+
 ### **Start Menu UI**
 
 - Three main buttons: `Start`, `How to Play`, `Characters`
