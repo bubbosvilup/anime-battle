@@ -35,19 +35,26 @@
 - Character name & special move display
 - Contained layout for better UI structure
 
-### **Battle Screen UI**
+### **Battle Screen UI & Logic**
 
 - Display of 1v1 role-based matchups
 - Winner and loser indication placeholders
-- Battle output text area for match descriptions
+- **Battle logic implemented** based on assigned roles and stats
+- **Special moves now applied correctly** if conditions are met
+- **Battle output text area** for match descriptions
 - Animated background (GIF or CSS animations)
 - Background music integration
 - Improved button interactions & hover effects
 - Adjustable game settings (only volume for now)
 
+### **How to Play Modal**
+
+- **New modal added with a simple ruleset**
+- Brief step-by-step instructions in a compact format
+
 ---
 
-## 🚧 In Progress
+## 🏇 In Progress
 
 ### **Enhanced UI/UX**
 
@@ -55,20 +62,19 @@
 - **Better transition effects for carousel & modals**
 - **Improved mobile responsiveness**
 
-### **How to Play & Settings Pages**
+### **Settings Page**
 
-- Detailed rules & guide for new players
+- Additional adjustable settings (game speed, animations toggle, etc.)
 
 ---
 
-## 🔜 Upcoming Features
+## 💜 Upcoming Features
 
-### **Game Logic Implementation**
+### **Game Logic Enhancements**
 
-- Random character generation with stats
-- Role-based battle logic
+- Balancing of character stats
 - Visual indication of winners/losers per matchup
-- Dynamic battle output text
+- Dynamic battle output text improvements
 
 ### **Audio & Visual Effects**
 
@@ -119,6 +125,7 @@
 ## 📌 Notes
 
 - **New:** Character carousel implemented inside a modal in the Start Menu.
+- **New:** Special moves now applied correctly during battles.
 - **Ensure `postcss.config.js` is correctly set up for Tailwind CSS.**
 - **Keep component structure modular for scalability.**
 - **Follow best practices for state management and component reusability.**
@@ -136,5 +143,5 @@
 **Commit message suggestion:**
 
 ```sh
-
+git commit -m "feat: implemented How to Play modal, improved battle logic, and applied special moves dynamically"
 ```
