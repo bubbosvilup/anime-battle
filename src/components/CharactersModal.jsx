@@ -5,26 +5,134 @@ const characters = [
   {
     name: "Goku",
     image: "/goku-card.png",
-    class: "Fighter",
-    special: "Ultra Instinct - Leadership +25% if 3 Fighters",
   },
   {
     name: "Naruto Uzumaki",
     image: "/naruto-card.png",
-    class: "Mage",
-    special: "Sage Mode - Leadership & Magic +15% if 2 Mages",
   },
   {
     name: "Luffy",
     image: "/luffy-card.png",
-    class: "Fighter",
-    special: "Will of D. - Leadership +20% if team is half Fighters",
   },
   {
     name: "Ichigo Kurosaki",
     image: "/ichigo-card.png",
-    class: "Fighter",
-    special: "Bankai - Magic & Strength +20% vs Mage",
+  },
+  {
+    name: "Saitama",
+    image: "/saitama-card.png",
+  },
+  {
+    name: "Edward Elric",
+    image: "/edward-card.png",
+  },
+  {
+    name: "Levi Ackerman",
+    image: "/levi-card.png",
+  },
+  {
+    name: "Gojo Satoru",
+    image: "/gojo-card.png",
+  },
+  {
+    name: "Asta",
+    image: "/asta-card.png",
+  },
+  {
+    name: "Tanjirou Kamado",
+    image: "/tanjirou-card.png",
+  },
+  {
+    name: "Griffith",
+    image: "/griffith-card.png",
+  },
+  {
+    name: "King Bradley",
+    image: "/bradley-card.png",
+  },
+  {
+    name: "Hanamichi Sakuragi",
+    image: "/hanamichi-card.png",
+  },
+  {
+    name: "L",
+    image: "/l-card.png",
+  },
+  {
+    name: "Vash the Stampede",
+    image: "/vash-card.png",
+  },
+  {
+    name: "Asuka Soryu Langley",
+    image: "/asuka-card.png",
+  },
+  {
+    name: "Zodd",
+    image: "/zodd-card.png",
+  },
+  {
+    name: "Kenpachi Zaraki",
+    image: "/kenpachi-card.png",
+  },
+  {
+    name: "Spike Spiegel",
+    image: "/spike-card.png",
+  },
+  {
+    name: "Natsu Dragneel",
+    image: "/natsu-card.png",
+  },
+  {
+    name: "Gray Fullbuster",
+    image: "/gray-card.png",
+  },
+  {
+    name: "Yami Sukehiro",
+    image: "/yami-card.png",
+  },
+  {
+    name: "Yuno",
+    image: "/yuno-card.png",
+  },
+  {
+    name: "Homura Akemi",
+    image: "/homura-card.png",
+  },
+  {
+    name: "Merlin",
+    image: "/merlin-card.png",
+  },
+  {
+    name: "Okabe Rintaro",
+    image: "/okabe-card.png",
+  },
+  {
+    name: "Reigen Arataka",
+    image: "/reigen-card.png",
+  },
+  {
+    name: "Lain Iwakura",
+    image: "/lain-card.png",
+  },
+  {
+    name: "Holo",
+    image: "/holo-card.png",
+  },
+  {
+    name: "Violet Evergarden",
+    image: "/violet-card.png",
+  },
+  {
+    name: "Conan Edogawa",
+    image: "/conan-card.png",
+  },
+  {
+    name: "Senku Ishigami",
+    image: "/senku-card.png",
+  },
+  {
+    name: "Lelouch Lamperouge",
+    image: "/lelouch-card.png",
   },
 ];
 
