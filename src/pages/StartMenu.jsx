@@ -30,9 +30,9 @@ export default function StartMenu() {
   }, []);
 
   const toggleAudio = () => {
-    const newIsPlaying = !isPlaying; // Calcoliamo il nuovo stato
-    soundRef.current.mute(!newIsPlaying); // Mutiamo in base al nuovo stato
-    setIsPlaying(newIsPlaying); // Aggiorniamo lo stato
+    const newIsPlaying = !isPlaying;
+    soundRef.current.mute(!newIsPlaying);
+    setIsPlaying(newIsPlaying);
   };
 
   const changeVolume = (event) => {
@@ -62,7 +62,7 @@ export default function StartMenu() {
 
       {/* Glass-effect menu container */}
       <div
-        className={`relative w-[400px] p-6 rounded-xl backdrop-blur-lg bg-white/10 shadow-lg flex flex-col items-center gap-4 ${
+        className={`relative w-[400px] p-6 rounded-xl border-2 border-red-500 backdrop-blur-lg bg-white/10 shadow-lg flex flex-col items-center gap-4 ${
           isCharactersOpen ? "blur-lg" : ""
         }`}
       >

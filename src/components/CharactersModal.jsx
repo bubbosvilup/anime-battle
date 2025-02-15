@@ -142,6 +142,18 @@ const characters = [
     name: "Sesshōmaru",
     image: "/sesso-card.png",
   },
+  {
+    name: "Gatsu",
+    image: "/gatsu-card.png",
+  },
+  {
+    name: "Roy Mustang",
+    image: "/mustang-card.png",
+  },
+  {
+    name: "Light Yagami",
+    image: "/light-card.png",
+  },
 ];
 
 export default function CharactersModal({ onClose }) {
