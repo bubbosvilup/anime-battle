@@ -2,6 +2,7 @@ const characters = [
   {
     name: "Goku",
     series: "Dragon Ball",
+    img: "/goku-card.png",
     strength: 95,
     health: 85,
     magic: 10,
@@ -12,6 +13,7 @@ const characters = [
   },
   {
     name: "Naruto Uzumaki",
+    img: "/naruto-card.png",
     series: "Naruto",
     strength: 80,
     health: 75,
@@ -24,6 +26,7 @@ const characters = [
   {
     name: "Luffy",
     series: "One Piece",
+    img: "/luffy-card.png",
     strength: 50,
     health: 80,
     magic: 12,
@@ -35,6 +38,7 @@ const characters = [
   {
     name: "Ichigo Kurosaki",
     series: "Bleach",
+    img: "/ichigo-card.png",
     strength: 50,
     health: 80,
     magic: 50,
@@ -46,6 +50,7 @@ const characters = [
   {
     name: "Saitama",
     series: "One Punch Man",
+    img: "/saitama-card.png",
     strength: 100,
     health: 100,
     magic: 10,
@@ -57,6 +62,7 @@ const characters = [
   {
     name: "Edward Elric",
     series: "Fullmetal Alchemist",
+    img: "/edward-card.png",
     strength: 50,
     health: 50,
     magic: 90,
@@ -68,6 +74,7 @@ const characters = [
   {
     name: "Levi Ackerman",
     series: "Attack on Titan",
+    img: "/levi-card.png",
     strength: 60,
     health: 50,
     magic: 10,
@@ -79,6 +86,7 @@ const characters = [
   {
     name: "Gojo Satoru",
     series: "Jujutsu Kaisen",
+    img: "/gojo-card.png",
     strength: 80,
     health: 80,
     magic: 90,
@@ -90,6 +98,7 @@ const characters = [
   {
     name: "Asta",
     series: "Black Clover",
+    img: "/asta-card.png",
     strength: 70,
     health: 82,
     magic: 90,
@@ -101,6 +110,7 @@ const characters = [
   {
     name: "Tanjirou Kamado",
     series: "Demon Slayer",
+    img: "/tanjirou-card.png",
     strength: 50,
     health: 50,
     magic: 65,
@@ -112,6 +122,7 @@ const characters = [
   {
     name: "Griffith",
     series: "Berserk",
+    img: "/griffith-card.png",
     strength: 85,
     health: 70,
     magic: 75,
@@ -123,6 +134,7 @@ const characters = [
   {
     name: "King Bradley",
     series: "Fullmetal Alchemist",
+    img: "/bradley-card.png",
     strength: 75,
     health: 80,
     magic: 60,
@@ -134,6 +146,7 @@ const characters = [
   {
     name: "Hanamichi Sakuragi",
     series: "Slam Dunk",
+    img: "/hanamichi-card.png",
     strength: 65,
     health: 85,
     magic: 30,
@@ -145,6 +158,7 @@ const characters = [
   {
     name: "L",
     series: "Death Note",
+    img: "/l-card.png",
     strength: 10,
     health: 40,
     magic: 100,
@@ -156,17 +170,19 @@ const characters = [
   {
     name: "Vash the Stampede",
     series: "Trigun",
+    img: "/vash-card.png",
     strength: 50,
     health: 60,
     magic: 80,
     leadership: 70,
     subType: "Mage",
     specialMove:
-      "Lethal Pacifist - Magic and Leadership increase by 10% when fighting a Mage.",
+      "Lethal Pacifist - Magic and Leadership increase by 15% when fighting a Mage.",
   },
   {
     name: "Asuka Soryu Langley",
     series: "Neon Genesis Evangelion",
+    img: "/asuka-card.png",
     strength: 45,
     health: 60,
     magic: 90,
@@ -178,6 +194,7 @@ const characters = [
   {
     name: "Zodd",
     series: "Berserk",
+    img: "/zodd-card.png",
     strength: 100,
     health: 100,
     magic: 20,
@@ -189,6 +206,7 @@ const characters = [
   {
     name: "Kenpachi Zaraki",
     series: "Bleach",
+    img: "/kenpachi-card.png",
     strength: 95,
     health: 90,
     magic: 15,
@@ -200,6 +218,7 @@ const characters = [
   {
     name: "Spike Spiegel",
     series: "Cowboy Bebop",
+    img: "/spike-card.png",
     strength: 60,
     health: 65,
     magic: 30,
@@ -211,6 +230,7 @@ const characters = [
   {
     name: "Natsu Dragneel",
     series: "Fairy Tail",
+    img: "/natsu-card.png",
     strength: 85,
     health: 80,
     magic: 90,
@@ -222,6 +242,7 @@ const characters = [
   {
     name: "Gray Fullbuster",
     series: "Fairy Tail",
+    img: "/gray-card.png",
     strength: 75,
     health: 75,
     magic: 85,
@@ -233,6 +254,7 @@ const characters = [
   {
     name: "Yami Sukehiro",
     series: "Black Clover",
+    img: "/yami-card.png",
     strength: 90,
     health: 85,
     magic: 95,
@@ -244,6 +266,7 @@ const characters = [
   {
     name: "Yuno",
     series: "Black Clover",
+    img: "/yuno-card.png",
     strength: 70,
     health: 75,
     magic: 95,
@@ -255,6 +278,7 @@ const characters = [
   {
     name: "Homura Akemi",
     series: "Puella Magi Madoka Magica",
+    img: "/homura-card.png",
     strength: 55,
     health: 65,
     magic: 95,
@@ -265,6 +289,7 @@ const characters = [
   {
     name: "Merlin",
     series: "Fate/Stay Night",
+    img: "/merlin-card.png",
     strength: 40,
     health: 60,
     magic: 100,
@@ -276,6 +301,7 @@ const characters = [
   {
     name: "Okabe Rintaro",
     series: "Steins;Gate",
+    img: "/okabe-card.png",
     strength: 40,
     health: 50,
     magic: 80,
@@ -287,6 +313,7 @@ const characters = [
   {
     name: "Reigen Arataka",
     series: "Mob Psycho 100",
+    img: "/reigen-card.png",
     strength: 35,
     health: 55,
     magic: 60,
@@ -297,6 +324,7 @@ const characters = [
   {
     name: "Lain Iwakura",
     series: "Serial Experiments Lain",
+    img: "/lain-card.png",
     strength: 20,
     health: 40,
     magic: 95,
@@ -307,6 +335,7 @@ const characters = [
   {
     name: "Holo",
     series: "Spice and Wolf",
+    img: "/holo-card.png",
     strength: 45,
     health: 55,
     magic: 70,
@@ -318,6 +347,7 @@ const characters = [
   {
     name: "Violet Evergarden",
     series: "Violet Evergarden",
+    img: "/violet-card.png",
     strength: 40,
     health: 60,
     magic: 50,
@@ -329,6 +359,7 @@ const characters = [
   {
     name: "Conan Edogawa",
     series: "Detective Conan",
+    img: "/conan-card.png",
     strength: 30,
     health: 45,
     magic: 70,
@@ -340,6 +371,7 @@ const characters = [
   {
     name: "Senku Ishigami",
     series: "Dr. Stone",
+    img: "/senku-card.png",
     strength: 35,
     health: 50,
     magic: 100,
@@ -351,6 +383,7 @@ const characters = [
   {
     name: "Lelouch Lamperouge",
     series: "Code Geass",
+    img: "/lelouch-card.png",
     strength: 35,
     health: 45,
     magic: 75,

@@ -134,6 +134,14 @@ const characters = [
     name: "Lelouch Lamperouge",
     image: "/lelouch-card.png",
   },
+  {
+    name: "Sun Wukong",
+    image: "/wukong-card.png",
+  },
+  {
+    name: "Sesshōmaru",
+    image: "/sesso-card.png",
+  },
 ];
 
 export default function CharactersModal({ onClose }) {

@@ -21,24 +21,26 @@
   flex-direction: column;
   align-items: center;
   text-align: center;
-  width: 300px;
+  width: 350px;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 15px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .generate-button {
-  background-color: orange;
-  color: white;
-  border: none;
+  font-size: 20px;
   padding: 10px 20px;
-  margin-bottom: 10px;
-  cursor: pointer;
-  font-size: 18px;
-  font-weight: bold;
-  border-radius: 5px;
-  transition: 0.3s;
+  background: linear-gradient(45deg, #ffcc00, #ff6600);
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0 0 10px #ffcc00;
+  transition: all 0.3s ease-in-out;
 }
 
 .generate-button:hover {
-  background-color: darkorange;
+  box-shadow: 0 0 20px #ff6600;
+  transform: scale(1.1);
 }
 
 .battle-button {
@@ -59,18 +61,144 @@
 }
 
 .role-box {
-  width: 200px;
-  height: 50px;
-  border: 2px solid white;
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
+  width: 200px;
+  height: 55px;
+  border-radius: 12px;
   font-size: 18px;
+  font-weight: bold;
+  text-align: center;
   cursor: pointer;
-  transition: 0.3s;
+  transition: all 0.3s ease-in-out;
+  background: rgba(20, 20, 20, 0.8);
+  color: white;
+  border: 2px solid transparent;
+  position: relative;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
 }
 
+/* Effetto hover con glow */
+.role-box:hover {
+  transform: scale(1.08);
+  box-shadow: 0px 0px 15px rgba(255, 255, 255, 0.4);
+}
+
+/* Ruoli disponibili si illuminano */
 .role-box.highlighted {
-  border-color: yellow;
-  background-color: rgba(255, 255, 0, 0.3);
+  border: 2px solid #ffcc00;
+  box-shadow: 0px 0px 12px rgba(255, 204, 0, 0.8);
+}
+
+/* Se il ruolo è assegnato */
+.role-box.assigned {
+  background: linear-gradient(45deg, #444, #222);
+  border: 2px solid #888;
+  color: #ddd;
+}
+
+/* Testo stilizzato per i ruoli */
+.role-name {
+  font-size: 18px;
+  text-transform: uppercase;
+  font-weight: 700;
+  letter-spacing: 1px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* Nome del personaggio con classe */
+.character-name {
+  font-size: 17px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Aggiunge spazio per le icone */
+.role-name::before,
+.character-name::before {
+  font-size: 22px;
+}
+
+/* Icone accanto ai nomi dei personaggi */
+.character-name::after {
+  font-size: 20px;
+  opacity: 0.8;
+}
+
+.randomization-box {
+  text-align: center;
+  padding: 20px;
+  border: 2px solid white;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  width: 350px; /* Ingigantiamo la card */
+  height: 500px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.character-card {
+  border-radius: 10px;
+  box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.6);
+  transition: all 0.3s ease-in-out;
+}
+
+.character-card:hover {
+  box-shadow: 0px 0px 30px rgba(255, 215, 0, 0.9);
+}
+
+.card-container {
+  position: relative;
+}
+
+.info-button {
+  position: absolute;
+  bottom: 5px;
+  right: 3px;
+  background: transparent;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.info-button:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+/* Tooltip per la mossa speciale */
+.special-move-tooltip {
+  position: absolute;
+  bottom: -50px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+  width: 90%;
+  text-align: center;
+  font-size: 14px;
+  z-index: 10;
+}
+
+.generate-button:disabled {
+  background-color: gray;
+  cursor: not-allowed;
+  opacity: 0.5;
+  transition: opacity 0.3s ease-in-out;
 }

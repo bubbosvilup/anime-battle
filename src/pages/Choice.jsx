@@ -2,11 +2,13 @@ import { useState } from "react";
 import RandomizationBox from "../components/RandomizationBox";
 import RoleBox from "../components/RoleBox";
 import BattleButton from "../components/BattleButton";
+import characters from "../data/characters";
 import "../styles/Choice.css";
 
 export default function Choice() {
-  console.log("Choice.jsx is rendering...");
   const [selectedCharacter, setSelectedCharacter] = useState(null);
+  const [isRolling, setIsRolling] = useState(false);
+  const [isGeneratingDisabled, setIsGeneratingDisabled] = useState(false);
   const [playerRoles, setPlayerRoles] = useState({
     Captain: null,
     "Vice Captain": null,
@@ -15,18 +17,59 @@ export default function Choice() {
     Support: null,
   });
 
-  const [aiRoles, setAiRoles] = useState({
-    Captain: null,
-    "Vice Captain": null,
-    Tank: null,
-    Healer: null,
-    Support: null,
-  });
+  const allRolesFilled = Object.values(playerRoles).every(Boolean);
+
+  const handleGenerate = () => {
+    if (isRolling || isGeneratingDisabled || allRolesFilled) return;
+
+    setIsRolling(true);
+
+    // 🔹 Filtra i personaggi già assegnati
+    const assignedCharacters = Object.values(playerRoles).filter(Boolean);
+    const availableCharacters = characters.filter(
+      (char) => !assignedCharacters.includes(char)
+    );
+
+    // 🔹 Se non ci sono più personaggi disponibili, disabilita il pulsante
+    if (availableCharacters.length === 0) {
+      setIsGeneratingDisabled(true);
+      return;
+    }
+
+    let counter = 0;
+    const interval = setInterval(() => {
+      setSelectedCharacter(
+        availableCharacters[
+          Math.floor(Math.random() * availableCharacters.length)
+        ]
+      );
+      counter++;
+
+      if (counter > 10) {
+        clearInterval(interval);
+        setIsRolling(false);
+        setIsGeneratingDisabled(true);
+      }
+    }, 100);
+  };
 
   const handleAssign = (role) => {
-    if (!playerRoles[role] && selectedCharacter) {
+    if (!playerRoles[role] && selectedCharacter && !isRolling) {
       setPlayerRoles((prev) => ({ ...prev, [role]: selectedCharacter }));
-      setSelectedCharacter(null); // Reset dopo l'assegnazione
+      setSelectedCharacter(null);
+
+      // 🔹 Controlla se ci sono ancora personaggi disponibili dopo l'assegnazione
+      const assignedCharacters = Object.values({
+        ...playerRoles,
+        [role]: selectedCharacter,
+      }).filter(Boolean);
+      const availableCharacters = characters.filter(
+        (char) => !assignedCharacters.includes(char)
+      );
+
+      setIsGeneratingDisabled(
+        availableCharacters.length === 0 || allRolesFilled
+      );
     }
   };
 
@@ -41,7 +84,7 @@ export default function Choice() {
             roleName={role}
             character={playerRoles[role]}
             onClick={() => handleAssign(role)}
-            isHighlighted={!!selectedCharacter}
+            isHighlighted={!!selectedCharacter && !isRolling}
           />
         ))}
       </div>
@@ -49,28 +92,19 @@ export default function Choice() {
       {/* Randomization Box */}
       <div className="randomization-section">
         <button
-          onClick={() =>
-            setSelectedCharacter({
-              name: "Random Name",
-              specialMove: "Special Move",
-            })
-          }
-          className="generate-button"
+          onClick={handleGenerate}
+          className={`generate-button ${
+            isGeneratingDisabled ? "disabled" : ""
+          }`}
+          disabled={isRolling || isGeneratingDisabled || allRolesFilled}
         >
-          GENERA!
+          {isRolling ? "Rolling..." : "GENERATE!"}
         </button>
-
-        {/* Scritta che guida il giocatore */}
-        {selectedCharacter && (
-          <p className="assign-message">
-            Assign your character to an available role!"
-          </p>
-        )}
 
         <RandomizationBox character={selectedCharacter} />
 
         <BattleButton
-          isEnabled={Object.values(playerRoles).every(Boolean)}
+          isEnabled={allRolesFilled}
           onClick={() => console.log("Start Battle")}
         />
       </div>
@@ -78,8 +112,8 @@ export default function Choice() {
       {/* AI Roles */}
       <div className="ai-section">
         <h2>IA</h2>
-        {Object.keys(aiRoles).map((role) => (
-          <RoleBox key={role} roleName={role} character={aiRoles[role]} />
+        {Object.keys(playerRoles).map((role) => (
+          <RoleBox key={role} roleName={role} character={playerRoles[role]} />
         ))}
       </div>
     </div>
