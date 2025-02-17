@@ -150,30 +150,46 @@ export default function Choice() {
   // Funzione di scelta: calcola il punteggio e poi sceglie casualmente tra i migliori
   function chooseCandidate(role, available) {
     if (available.length === 0) return null;
+
+    // 30% di possibilità di scelta completamente casuale
+    if (Math.random() < 0.3) {
+      return available[Math.floor(Math.random() * available.length)];
+    }
+
     const scored = available.map((candidate) => {
-      let value = 0;
+      let baseValue = 0;
       switch (role) {
         case "Captain":
         case "Vice Captain":
-          value = candidate.leadership;
+          baseValue = candidate.leadership;
           break;
         case "Tank":
-          value = candidate.health;
+          baseValue = candidate.health;
           break;
         case "Healer":
-          value = candidate.magic;
+          baseValue = candidate.magic;
           break;
         case "Support":
-          value = candidate.magic + candidate.strength;
+          baseValue = candidate.magic + candidate.strength;
           break;
         default:
-          value = candidate.leadership;
+          baseValue = candidate.leadership;
       }
-      return { candidate, value };
+      // Moltiplica per 0.8 e aggiungi un fattore casuale tra -10 e +10
+      const weighted = baseValue * 0.8;
+      const randomFactor = Math.random() * 20 - 10;
+      const score = weighted + randomFactor;
+      return { candidate, score };
     });
-    scored.sort((a, b) => b.value - a.value);
-    const topCount = Math.min(3, scored.length);
+
+    // Ordina i candidati per punteggio in ordine decrescente
+    scored.sort((a, b) => b.score - a.score);
+
+    // Estendi il pool ai primi 5 candidati (o meno, se non ci sono abbastanza)
+    const topCount = Math.min(5, scored.length);
     const topCandidates = scored.slice(0, topCount);
+
+    // Seleziona casualmente tra questi candidati
     const randomIndex = Math.floor(Math.random() * topCandidates.length);
     return topCandidates[randomIndex].candidate;
   }
