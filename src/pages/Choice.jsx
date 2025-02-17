@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom"; // Importa useNavigate
 import RandomizationBox from "../components/RandomizationBox";
 import RoleBox from "../components/RoleBox";
 import BattleButton from "../components/BattleButton";
@@ -35,6 +36,8 @@ export default function Choice() {
   const [aiModalCandidate, setAiModalCandidate] = useState(null);
 
   const allRolesFilled = Object.values(playerRoles).every(Boolean);
+
+  const navigate = useNavigate(); // Hook per la navigazione
 
   // Generazione del personaggio per il giocatore (rolling visivo)
   const handleGenerate = () => {
@@ -100,6 +103,14 @@ export default function Choice() {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [allRolesFilled]);
+
+  // Salva le squadre in localStorage quando sono complete
+  useEffect(() => {
+    if (allRolesFilled) {
+      localStorage.setItem("playerTeam", JSON.stringify(playerRoles));
+      localStorage.setItem("aiTeam", JSON.stringify(aiRoles));
+    }
+  }, [allRolesFilled, playerRoles, aiRoles]);
 
   // Funzione per animare il modal dell'IA per ogni ruolo in sequenza con pause
   function animateAiModalSequentially(roles, available) {
@@ -207,7 +218,7 @@ export default function Choice() {
             <RandomizationBox character={selectedCharacter} />
             <BattleButton
               isEnabled={allRolesFilled}
-              onClick={() => console.log("Start Battle")}
+              onClick={() => navigate("/battle")}
             />
           </div>
 

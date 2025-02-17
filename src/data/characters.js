@@ -392,6 +392,65 @@ const characters = [
     specialMove:
       "Zero Requiem - Leadership increases by 30% and reduces the opponent's Leadership by 20%.",
   },
+  {
+    name: "Sun Wukong",
+    series: "none",
+    img: "/wukong-card.png",
+    strength: 100,
+    health: 90,
+    magic: 50,
+    leadership: 50,
+    subType: "Fighter",
+    specialMove: "Ruyi Jingu Bang - Decrease enemy team total score by 10%.",
+  },
+  {
+    name: "Sesshōmaru",
+    series: "Inuyasha",
+    img: "/sesso-card.png",
+    strength: 80,
+    health: 75,
+    magic: 70,
+    leadership: 80,
+    subType: "Mage",
+    specialMove:
+      "Bakuryūha - Decrease the health value of the enemy tank by 20% at the beginning of the fight.",
+  },
+  {
+    name: "Gatsu",
+    series: "Berserk",
+    img: "/gatsu-card.png",
+    strength: 80,
+    health: 80,
+    magic: 25,
+    leadership: 50,
+    subType: "Fighter",
+    specialMove:
+      "Fury of the Eclipse - Increases his strength value by 25% if facing another fighter type.",
+  },
+  {
+    name: "Roy Mustang",
+    series: "",
+    img: "/mustang-card.png",
+    strength: 30,
+    health: 40,
+    magic: 85,
+    leadership: 80,
+    subType: "Mage",
+    specialMove:
+      "Flame Alchemy - Increases his magic value by 30% if facing another mage.",
+  },
+  {
+    name: "Light Yagami",
+    series: "Death Note",
+    img: "/light-card.png",
+    strength: 30,
+    health: 30,
+    magic: 30,
+    leadership: 90,
+    subType: "Citizen",
+    specialMove:
+      "Ultimate Sentence - Decrease all values of a enemy by 25% at the beginning of the fight.",
+  },
 ];
 
 export default characters;
