@@ -1,0 +1,125 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap");
+
+.footer {
+  padding: 20px;
+  text-align: center;
+  color: #ffffff;
+  font-family: "Montserrat", sans-serif;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
+.footer p {
+  margin: 0;
+  font-size: 1.1rem;
+}
+
+.footer-tag {
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  position: relative;
+  display: inline-block;
+  color: transparent;
+  background: linear-gradient(
+    45deg,
+    #ffcc00 0%,
+    #ff9900 25%,
+    #ffcc00 50%,
+    #ff9900 75%,
+    #ffcc00 100%
+  );
+  background-size: 200% auto;
+  background-clip: text;
+  -webkit-background-clip: text;
+  animation: shine 3s linear infinite, float 4s ease-in-out infinite;
+  text-shadow: 0 0 30px rgba(255, 204, 0, 0.5);
+  perspective: 1000px;
+}
+
+.footer-tag::before,
+.footer-tag::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform-origin: 50% 50%;
+  width: 100%;
+  background: inherit;
+  background-clip: text;
+  -webkit-background-clip: text;
+  opacity: 0.3;
+  animation: glitch 4s infinite;
+}
+
+.footer-tag::before {
+  animation: glitch 4s infinite, split 0.5s ease-in-out alternate infinite;
+  clip-path: polygon(0 0, 100% 0, 100% 45%, 0 45%);
+}
+
+.footer-tag::after {
+  animation: glitch 4s infinite,
+    split 0.5s ease-in-out alternate-reverse infinite;
+  clip-path: polygon(0 55%, 100% 55%, 100% 100%, 0 100%);
+}
+
+.footer-tag:hover {
+  animation-play-state: paused;
+  transform: scale(1.1);
+}
+
+.footer-tag:hover::before {
+  transform: translate(2px, -2px);
+}
+
+.footer-tag:hover::after {
+  transform: translate(-2px, 2px);
+}
+
+@keyframes shine {
+  to {
+    background-position: 200% center;
+  }
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0) rotateX(0);
+  }
+  25% {
+    transform: translateY(-3px) rotateX(5deg);
+  }
+  75% {
+    transform: translateY(3px) rotateX(-5deg);
+  }
+}
+
+@keyframes glitch {
+  0%,
+  100% {
+    transform: translate(0);
+  }
+  20% {
+    transform: translate(-2px, 2px);
+  }
+  40% {
+    transform: translate(-2px, -2px);
+  }
+  60% {
+    transform: translate(2px, 2px);
+  }
+  80% {
+    transform: translate(2px, -2px);
+  }
+}
+
+@keyframes split {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(5px);
+  }
+}
