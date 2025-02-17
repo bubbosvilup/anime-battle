@@ -32,17 +32,21 @@ export default function RoleBox({
       }`}
       onClick={onClick}
     >
-      {character ? (
-        <>
-          <span className="character-name">
-            {subTypeIcons[character.subType] || ""} {character.name}
-          </span>
-        </>
-      ) : (
-        <span className="role-name">
-          {roleIcons[roleName] || ""} {roleName}
-        </span>
-      )}
+      <div className="role-content">
+        {character ? (
+          <>
+            <span className="character-name">{character.name}</span>
+            <span className="role-icon">
+              {subTypeIcons[character.subType] || ""}
+            </span>
+          </>
+        ) : (
+          <>
+            <span className="role-name">{roleName}</span>
+            <span className="role-icon">{roleIcons[roleName] || ""}</span>
+          </>
+        )}
+      </div>
     </div>
   );
 }

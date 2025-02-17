@@ -3,7 +3,7 @@
   justify-content: space-around;
   align-items: center;
   height: 100vh;
-  background-color: #001a33; /* Colore di sfondo scuro */
+  background-color: transparent; /* Colore di sfondo scuro */
   color: white;
   font-family: Arial, sans-serif;
 }
@@ -73,7 +73,7 @@
   cursor: pointer;
   transition: all 0.3s ease-in-out;
   background: rgba(20, 20, 20, 0.8);
-  color: white;
+  color: rgb(255, 255, 255);
   border: 2px solid transparent;
   position: relative;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
@@ -118,25 +118,11 @@
   gap: 8px;
 }
 
-/* Aggiunge spazio per le icone */
-.role-name::before,
-.character-name::before {
-  font-size: 22px;
-}
-
-/* Icone accanto ai nomi dei personaggi */
-.character-name::after {
-  font-size: 20px;
-  opacity: 0.8;
-}
-
 .randomization-box {
   text-align: center;
   padding: 20px;
-  border: 2px solid white;
-  background: rgba(255, 255, 255, 0.1);
   border-radius: 10px;
-  width: 350px; /* Ingigantiamo la card */
+  width: 350px;
   height: 500px;
   display: flex;
   flex-direction: column;
@@ -146,13 +132,12 @@
 }
 
 .character-card {
-  border-radius: 10px;
   box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.6);
   transition: all 0.3s ease-in-out;
 }
 
 .character-card:hover {
-  box-shadow: 0px 0px 30px rgba(255, 215, 0, 0.9);
+  box-shadow: 0px 0px 30px rgba(255, 217, 0, 0.753);
 }
 
 .card-container {
@@ -201,4 +186,60 @@
   cursor: not-allowed;
   opacity: 0.5;
   transition: opacity 0.3s ease-in-out;
+}
+
+.role-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0 10px;
+}
+
+.role-icon {
+  font-size: 18px;
+}
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+}
+
+.ai-modal {
+  background: #001a33;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.bg-video {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  overflow: hidden;
+}
+
+.bg-video video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Container principale: non usare background opaco se vuoi vedere il video */
+.page {
+  position: relative;
+  z-index: 0;
+  min-height: 100vh;
+  /* Imposta un background trasparente (o semi-trasparente se desideri un effetto overlay) */
+  background: transparent;
+  color: white;
+  overflow: hidden;
 }

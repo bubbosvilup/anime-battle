@@ -1,0 +1,118 @@
+.choice-title-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  background: transparent;
+  backdrop-filter: blur(15px) saturate(180%);
+  border-bottom: 1px solid rgba(255, 204, 0, 0.2);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4),
+    0 -4px 16px rgba(255, 204, 0, 0.1) inset;
+}
+
+.choice-title {
+  font-size: 2.5rem; /* Reduced from 4rem */
+  font-family: "Montserrat", sans-serif; /* Added modern sans-serif font */
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  position: relative;
+  background: linear-gradient(
+    45deg,
+    #ffcc00 20%,
+    #ff9900 40%,
+    #ff6600 60%,
+    #ff3399 80%,
+    #00ffff 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  background-size: 300% 300%;
+  animation: GradientFlow 8s ease infinite,
+    NeonPulse 2s ease-in-out infinite alternate;
+  text-shadow: 0 0 10px rgba(255, 204, 0, 0.5), 0 0 20px rgba(255, 102, 0, 0.3),
+    0 0 30px rgba(255, 51, 153, 0.2);
+  transform-style: preserve-3d;
+  perspective: 1000px;
+  transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55),
+    letter-spacing 0.4s ease;
+  opacity: 1; /* Ensure initial opacity is set */
+}
+
+@keyframes GradientFlow {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes NeonPulse {
+  from {
+    text-shadow: 0 0 10px rgba(255, 204, 0, 0.5),
+      0 0 20px rgba(255, 102, 0, 0.3), 0 0 30px rgba(255, 51, 153, 0.2);
+  }
+  to {
+    text-shadow: 0 0 20px rgba(255, 204, 0, 0.8),
+      0 0 40px rgba(255, 102, 0, 0.5), 0 0 60px rgba(255, 51, 153, 0.3);
+  }
+}
+
+.choice-title:hover {
+  transform: scale(1.05) rotateX(10deg) rotateY(-3deg);
+  letter-spacing: 6px;
+}
+
+.choice-title::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -8px;
+  height: 3px;
+  background: linear-gradient(
+    90deg,
+    transparent 10%,
+    #ffcc00 50%,
+    transparent 90%
+  );
+  background-size: 200% 100%;
+  animation: BorderFlow 3s linear infinite;
+  filter: blur(1px);
+}
+
+@keyframes BorderFlow {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* Initial load animation - now separate from hover effects */
+.choice-title.initial-load {
+  animation: SlideIn 1s cubic-bezier(0.4, 0, 0.2, 1) forwards,
+    GradientFlow 8s ease infinite, NeonPulse 2s ease-in-out infinite alternate;
+}
+
+@keyframes SlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-50px) rotateX(45deg) scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) rotateX(0) scale(1);
+  }
+}
