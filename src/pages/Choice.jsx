@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom"; // Importa useNavigate
 import RandomizationBox from "../components/RandomizationBox";
 import RoleBox from "../components/RoleBox";
@@ -7,11 +7,17 @@ import characters from "../data/characters";
 import "../styles/Choice.css";
 import ChoiceTitle from "../components/ChoiceTitle";
 import generateSound from "../sounds/generate.mp3"; // Importa il file audio
+import casualClickSound from "../sounds/casual-click.mp3";
+import closeUiSound from "../sounds/closeUi.mp3";
 
 export default function Choice() {
   const [selectedCharacter, setSelectedCharacter] = useState(null);
   const [isRolling, setIsRolling] = useState(false);
   const [isGeneratingDisabled, setIsGeneratingDisabled] = useState(false);
+  const [isSettingsOpen, setIsSettingsOpen] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(true);
+  const [volume, setVolume] = useState(0.5);
+  const soundRef = useRef(null);
 
   // Stati per i ruoli del giocatore
   const [playerRoles, setPlayerRoles] = useState({
@@ -45,6 +51,41 @@ export default function Choice() {
     const audio = new Audio(sound);
     audio.volume = 0.15;
     audio.play();
+  };
+
+  // Funzione per riprodurre effetti sonori
+  const playSoundEffect = (soundFile) => {
+    new Howl({
+      src: [soundFile],
+      volume: 0.3, // Regola il volume dell'effetto se necessario
+    }).play();
+  };
+
+  useEffect(() => {
+    soundRef.current = new Howl({
+      src: ["/choice-music.mp3"],
+      loop: true,
+      volume: volume,
+    });
+
+    soundRef.current.play();
+
+    return () => {
+      soundRef.current.stop();
+    };
+  }, []);
+
+  const toggleAudio = () => {
+    playSoundEffect(closeUiSound);
+    const newIsPlaying = !isPlaying;
+    soundRef.current.mute(!newIsPlaying);
+    setIsPlaying(newIsPlaying);
+  };
+
+  const changeVolume = (event) => {
+    const newVolume = parseFloat(event.target.value);
+    setVolume(newVolume);
+    soundRef.current.volume(newVolume);
   };
 
   // Generazione del personaggio per il giocatore (rolling visivo)
@@ -269,6 +310,60 @@ export default function Choice() {
             <div className="ai-modal">
               <RandomizationBox character={aiModalCandidate} />
             </div>
+          </div>
+        )}
+
+        {/* Bottom-right icons */}
+        <div className="absolute bottom-4 right-4 flex flex-col gap-2 z-99">
+          {/* AUDIO button - Toggle mute/unmute */}
+          <button
+            className="p-3 bg-gray-700 rounded-full hover:scale-110"
+            onClick={toggleAudio}
+          >
+            {isPlaying ? "🔊" : "🔇"}
+          </button>
+
+          {/* SETTINGS button - Opens settings menu */}
+          <button
+            className="p-3 bg-gray-700 rounded-full hover:scale-110"
+            onClick={() => {
+              playSoundEffect(closeUiSound);
+              setIsSettingsOpen(!isSettingsOpen);
+            }}
+          >
+            ⚙️
+          </button>
+        </div>
+
+        {/* SETTINGS MENU - Appears when isSettingsOpen is true */}
+        {isSettingsOpen && (
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-gray-900/90 p-6 rounded-xl shadow-xl flex flex-col items-center gap-4">
+            <h2 className="text-xl font-bold">Settings</h2>
+
+            {/* VOLUME CONTROL SLIDER */}
+            <label className="flex flex-col items-center">
+              <span className="mb-2">Volume</span>
+              <input
+                type="range"
+                min="0"
+                max="1"
+                step="0.05"
+                value={volume}
+                onChange={changeVolume}
+                className="w-40"
+              />
+            </label>
+
+            {/* CLOSE SETTINGS BUTTON */}
+            <button
+              className="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700"
+              onClick={() => {
+                playSoundEffect(casualClickSound);
+                setIsSettingsOpen(false);
+              }}
+            >
+              Close
+            </button>
           </div>
         )}
       </div>

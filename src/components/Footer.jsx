@@ -8,7 +8,7 @@ export default function Footer() {
 
   return (
     <footer
-      className="footer"
+      className="footer z-0"
       onClick={handleClick}
       style={{ cursor: "pointer" }}
     >
