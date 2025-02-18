@@ -6,6 +6,7 @@ import BattleButton from "../components/BattleButton";
 import characters from "../data/characters";
 import "../styles/Choice.css";
 import ChoiceTitle from "../components/ChoiceTitle";
+import generateSound from "../sounds/generate.mp3"; // Importa il file audio
 
 export default function Choice() {
   const [selectedCharacter, setSelectedCharacter] = useState(null);
@@ -39,10 +40,18 @@ export default function Choice() {
 
   const navigate = useNavigate(); // Hook per la navigazione
 
+  // Funzione per riprodurre il suono
+  const playSound = (sound) => {
+    const audio = new Audio(sound);
+    audio.volume = 0.15;
+    audio.play();
+  };
+
   // Generazione del personaggio per il giocatore (rolling visivo)
   const handleGenerate = () => {
     if (isRolling || isGeneratingDisabled || allRolesFilled) return;
     setIsRolling(true);
+    playSound(generateSound); // Riproduci il suono
 
     const assignedCharacters = Object.values(playerRoles).filter(Boolean);
     const availableCharacters = characters.filter(
@@ -62,7 +71,7 @@ export default function Choice() {
         ]
       );
       counter++;
-      if (counter > 10) {
+      if (counter > 22) {
         clearInterval(interval);
         setIsRolling(false);
         setIsGeneratingDisabled(true);
@@ -120,13 +129,14 @@ export default function Choice() {
       const role = roles[index];
       setAiModalRole(role);
       setShowAiModal(true);
+      playSound(generateSound); // Riproduci il suono
       let counter = 0;
       const interval = setInterval(() => {
         setAiModalCandidate(
           updatedAvailable[Math.floor(Math.random() * updatedAvailable.length)]
         );
         counter++;
-        if (counter > 10) {
+        if (counter > 22) {
           clearInterval(interval);
           // Scegli il candidato finale in base al criterio strategico
           const finalCandidate = chooseCandidate(role, updatedAvailable);

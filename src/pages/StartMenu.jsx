@@ -5,6 +5,8 @@ import EmberParticles from "../components/EmberParticles";
 import CharactersModal from "../components/CharactersModal";
 import HowToModal from "../components/HowToModal";
 import { useNavigate } from "react-router-dom";
+import casualClickSound from "../sounds/casual-click.mp3";
+import soundOffSound from "../sounds/sound-off.mp3";
 
 export default function StartMenu() {
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
@@ -14,6 +16,13 @@ export default function StartMenu() {
   const soundRef = useRef(null);
   const [isHowToPlayOpen, setIsHowToPlayOpen] = useState(false);
   const navigate = useNavigate();
+
+  const playSoundEffect = (soundFile) => {
+    new Howl({
+      src: [soundFile],
+      volume: 0.3, // Regola il volume dell'effetto se necessario
+    }).play();
+  };
 
   useEffect(() => {
     soundRef.current = new Howl({
@@ -30,6 +39,7 @@ export default function StartMenu() {
   }, []);
 
   const toggleAudio = () => {
+    playSoundEffect(casualClickSound);
     const newIsPlaying = !isPlaying;
     soundRef.current.mute(!newIsPlaying);
     setIsPlaying(newIsPlaying);
@@ -76,7 +86,10 @@ export default function StartMenu() {
 
         {/* HOW TO PLAY button */}
         <button
-          onClick={() => setIsHowToPlayOpen(true)}
+          onClick={() => {
+            playSoundEffect(casualClickSound);
+            setIsHowToPlayOpen(true);
+          }}
           className="px-6 py-3 bg-gray-700 text-white rounded-lg text-xl transition-transform duration-300 hover:bg-gray-600 hover:scale-105"
         >
           How to Play
@@ -84,7 +97,10 @@ export default function StartMenu() {
 
         {/* CHARACTERS button - Opens Modal */}
         <button
-          onClick={() => setIsCharactersOpen(true)}
+          onClick={() => {
+            playSoundEffect(casualClickSound);
+            setIsCharactersOpen(true);
+          }}
           className="px-6 py-3 bg-gray-700 text-white rounded-lg text-xl transition-transform duration-300 hover:bg-gray-600 hover:scale-105"
         >
           Characters
@@ -99,7 +115,7 @@ export default function StartMenu() {
       )}
 
       {/* Bottom-right icons */}
-      <div className="absolute bottom-4 right-4 flex flex-col gap-2">
+      <div className="absolute bottom-4 right-4 flex flex-col gap-2 z-50">
         {/* AUDIO button - Toggle mute/unmute */}
         <button
           className="p-3 bg-gray-700 rounded-full hover:scale-110"
@@ -111,7 +127,10 @@ export default function StartMenu() {
         {/* SETTINGS button - Opens settings menu */}
         <button
           className="p-3 bg-gray-700 rounded-full hover:scale-110"
-          onClick={() => setIsSettingsOpen(!isSettingsOpen)}
+          onClick={() => {
+            playSoundEffect(casualClickSound);
+            setIsSettingsOpen(!isSettingsOpen);
+          }}
         >
           ⚙️
         </button>
