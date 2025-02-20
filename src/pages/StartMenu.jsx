@@ -9,6 +9,8 @@ import EmberParticles from "../components/EmberParticles";
 import CharactersModal from "../components/CharactersModal";
 import HowToModal from "../components/HowToModal";
 
+console.log("Hey you! close this, nothing to see or test in my code.");
+
 export default function StartMenu() {
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
   const [isCharactersOpen, setIsCharactersOpen] = useState(false);

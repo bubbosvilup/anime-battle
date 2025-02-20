@@ -9,6 +9,8 @@ import ChoiceTitle from "../components/ChoiceTitle";
 import generateSound from "../sounds/generate.mp3"; // Importa il file audio
 import casualClickSound from "../sounds/casual-click.mp3";
 import closeUiSound from "../sounds/closeUi.mp3";
+import assignSound from "../sounds/assign.mp3";
+import startSound from "../sounds/start-sound.mp3";
 
 export default function Choice() {
   const [selectedCharacter, setSelectedCharacter] = useState(null);
@@ -16,7 +18,9 @@ export default function Choice() {
   const [isGeneratingDisabled, setIsGeneratingDisabled] = useState(false);
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
   const [isPlaying, setIsPlaying] = useState(true);
-  const [volume, setVolume] = useState(0.5);
+  const [masterVolume, setMasterVolume] = useState(1);
+  const [musicVolume, setMusicVolume] = useState(0.5);
+  const [sfxVolume, setSfxVolume] = useState(0.5);
   const soundRef = useRef(null);
 
   // Stati per i ruoli del giocatore
@@ -57,15 +61,31 @@ export default function Choice() {
   const playSoundEffect = (soundFile) => {
     new Howl({
       src: [soundFile],
-      volume: 0.3, // Regola il volume dell'effetto se necessario
+      volume: sfxVolume * masterVolume,
     }).play();
   };
+
+  const playAssignSound = () => {
+    const audio = new Audio(assignSound);
+    audio.volume = 0.4;
+    audio.play();
+  };
+
+  useEffect(() => {
+    const savedSettings = localStorage.getItem("audioSettings");
+    if (savedSettings) {
+      const { master, music, sfx } = JSON.parse(savedSettings);
+      setMasterVolume(master);
+      setMusicVolume(music);
+      setSfxVolume(sfx);
+    }
+  }, []);
 
   useEffect(() => {
     soundRef.current = new Howl({
       src: ["/choice-music.mp3"],
       loop: true,
-      volume: volume,
+      volume: musicVolume * masterVolume,
     });
 
     soundRef.current.play();
@@ -73,13 +93,24 @@ export default function Choice() {
     return () => {
       soundRef.current.stop();
     };
-  }, []);
+  }, [musicVolume, masterVolume]);
 
+  // Ogni volta che masterVolume o musicVolume cambiano, aggiorna il volume della musica
+  useEffect(() => {
+    if (soundRef.current) {
+      soundRef.current.volume(musicVolume * masterVolume);
+    }
+  }, [musicVolume, masterVolume]);
+
+  // Muta o smuta l'audio
   const toggleAudio = () => {
     playSoundEffect(closeUiSound);
     const newIsPlaying = !isPlaying;
-    soundRef.current.mute(!newIsPlaying);
     setIsPlaying(newIsPlaying);
+
+    if (soundRef.current) {
+      soundRef.current.mute(!newIsPlaying);
+    }
   };
 
   const changeVolume = (event) => {
@@ -125,6 +156,8 @@ export default function Choice() {
     if (!playerRoles[role] && selectedCharacter && !isRolling) {
       setPlayerRoles((prev) => ({ ...prev, [role]: selectedCharacter }));
       setSelectedCharacter(null);
+
+      playAssignSound(); // Riproduci il suono
 
       const assignedCharacters = Object.values({
         ...playerRoles,
@@ -285,7 +318,10 @@ export default function Choice() {
             <RandomizationBox character={selectedCharacter} />
             <BattleButton
               isEnabled={allRolesFilled}
-              onClick={() => navigate("/battle")}
+              onClick={() => {
+                playSound(startSound);
+                navigate("/battle");
+              }}
             />
           </div>
 
@@ -340,16 +376,44 @@ export default function Choice() {
           <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-gray-900/90 p-6 rounded-xl shadow-xl flex flex-col items-center gap-4">
             <h2 className="text-xl font-bold">Settings</h2>
 
-            {/* VOLUME CONTROL SLIDER */}
+            {/* MASTER VOLUME */}
             <label className="flex flex-col items-center">
-              <span className="mb-2">Volume</span>
+              <span className="mb-2">Master Volume</span>
               <input
                 type="range"
                 min="0"
                 max="1"
                 step="0.05"
-                value={volume}
-                onChange={changeVolume}
+                value={masterVolume}
+                onChange={(e) => setMasterVolume(parseFloat(e.target.value))}
+                className="w-40"
+              />
+            </label>
+
+            {/* MUSIC VOLUME */}
+            <label className="flex flex-col items-center">
+              <span className="mb-2">Music Volume</span>
+              <input
+                type="range"
+                min="0"
+                max="1"
+                step="0.05"
+                value={musicVolume}
+                onChange={(e) => setMusicVolume(parseFloat(e.target.value))}
+                className="w-40"
+              />
+            </label>
+
+            {/* SOUND EFFECTS VOLUME */}
+            <label className="flex flex-col items-center">
+              <span className="mb-2">Sound Effects Volume</span>
+              <input
+                type="range"
+                min="0"
+                max="1"
+                step="0.05"
+                value={sfxVolume}
+                onChange={(e) => setSfxVolume(parseFloat(e.target.value))}
                 className="w-40"
               />
             </label>
