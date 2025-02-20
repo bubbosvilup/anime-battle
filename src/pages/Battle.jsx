@@ -1,15 +1,16 @@
 import React, { useState, useEffect } from "react";
 import RoleBox from "../components/RoleBox";
+import BattleModal from "../components/BattleModal";
+import "../styles/Battle.css";
 
 const BATTLE_ROLES = ["Captain", "Vice Captain", "Tank", "Healer", "Support"];
 
 const calculateStats = (character, role) => {
   if (!character) return 0;
 
-  // Applica specialMove se presente
   let multiplier = 1;
   if (character.specialMove && character.specialMove.includes("Decrease")) {
-    multiplier = 0.75; // 25% decrease
+    multiplier = 0.75;
   }
 
   switch (role) {
@@ -44,6 +45,7 @@ export default function Battle() {
   const [isAnimating, setIsAnimating] = useState(false);
   const [gameStatus, setGameStatus] = useState("playing");
   const [currentMatchup, setCurrentMatchup] = useState(null);
+  const [showModal, setShowModal] = useState(false);
 
   const processDuel = () => {
     if (currentDuelIndex >= BATTLE_ROLES.length) {
@@ -56,7 +58,6 @@ export default function Battle() {
     const playerChar = playerTeam[role];
     const aiChar = aiTeam[role];
 
-    // Check for special moves that affect stats
     let specialMoveText = "";
     if (playerChar?.specialMove?.includes("Decrease")) {
       specialMoveText = `${playerChar.name} activates ${playerChar.specialMove}`;
@@ -68,15 +69,27 @@ export default function Battle() {
     const playerStat = calculateStats(playerChar, role);
     const aiStat = calculateStats(aiChar, role);
 
-    setCurrentMatchup({
+    const matchup = {
       role,
-      playerChar,
-      aiChar,
+      playerChar: {
+        ...playerChar,
+        stat: playerStat,
+      },
+      aiChar: {
+        ...aiChar,
+        stat: aiStat,
+      },
       playerStat,
       aiStat,
-    });
+    };
 
+    setCurrentMatchup(matchup);
+
+    // Ritardo iniziale prima di mostrare il modale
     setTimeout(() => {
+      setShowModal(true);
+
+      // Process the duel result while modal is showing
       if (specialMoveText) {
         setBattleEvents((prev) => [...prev, specialMoveText]);
       }
@@ -99,13 +112,18 @@ export default function Battle() {
       }
 
       setBattleEvents((prev) => [...prev, eventDescription]);
+    }, 2000); // 2 secondi di attesa prima del modale
+  };
 
-      setTimeout(() => {
-        setIsAnimating(false);
-        setCurrentMatchup(null);
-        setCurrentDuelIndex((prev) => prev + 1);
-      }, 1500);
-    }, 1500);
+  const handleModalClose = () => {
+    setShowModal(false);
+
+    // Aspetta 2 secondi dopo la chiusura del modale prima del prossimo duello
+    setTimeout(() => {
+      setIsAnimating(false);
+      setCurrentMatchup(null);
+      setCurrentDuelIndex((prev) => prev + 1);
+    }, 2000);
   };
 
   useEffect(() => {
@@ -206,40 +224,6 @@ export default function Battle() {
             </div>
           </div>
 
-          {/* Current Matchup Display */}
-          {currentMatchup && (
-            <div className="text-center mb-6 p-4 bg-gray-700 rounded-lg">
-              <h3 className="text-xl font-bold mb-2">
-                {currentMatchup.role} Battle!
-              </h3>
-              <div className="flex justify-around items-center">
-                <div className="text-center">
-                  <img
-                    src={currentMatchup.playerChar?.img}
-                    alt={currentMatchup.playerChar?.name}
-                    className="w-20 h-20 rounded-full object-cover mx-auto mb-2"
-                  />
-                  <div>{currentMatchup.playerChar?.name || "Player"}</div>
-                  <div className="text-2xl font-bold text-blue-400">
-                    {currentMatchup.playerStat} pts
-                  </div>
-                </div>
-                <div className="text-xl font-bold">VS</div>
-                <div className="text-center">
-                  <img
-                    src={currentMatchup.aiChar?.img}
-                    alt={currentMatchup.aiChar?.name}
-                    className="w-20 h-20 rounded-full object-cover mx-auto mb-2"
-                  />
-                  <div>{currentMatchup.aiChar?.name || "AI"}</div>
-                  <div className="text-2xl font-bold text-red-400">
-                    {currentMatchup.aiStat} pts
-                  </div>
-                </div>
-              </div>
-            </div>
-          )}
-
           {/* Battle Log */}
           <div className="border-2 border-gray-600 rounded-lg p-4 max-h-60 overflow-y-auto bg-gray-900">
             {battleEvents.map((event, idx) => (
@@ -261,6 +245,24 @@ export default function Battle() {
           )}
         </div>
       </div>
+
+      {/* Battle Modal */}
+      {currentMatchup && (
+        <BattleModal
+          isOpen={showModal}
+          onClose={handleModalClose}
+          player={{
+            name: currentMatchup.playerChar?.name || "Player",
+            img: currentMatchup.playerChar?.img,
+            stat: currentMatchup.playerStat,
+          }}
+          ai={{
+            name: currentMatchup.aiChar?.name || "AI",
+            img: currentMatchup.aiChar?.img,
+            stat: currentMatchup.aiStat,
+          }}
+        />
+      )}
     </div>
   );
 }

@@ -1,0 +1,83 @@
+@keyframes cardClashLeft {
+  0% {
+    transform: translateX(-120vw) rotate(-15deg);
+    opacity: 0;
+  }
+  30% {
+    transform: translateX(-50vw) rotate(-5deg);
+    opacity: 1;
+  }
+  45% {
+    transform: translateX(15vw) rotate(0deg) scale(1.1);
+  }
+  55% {
+    transform: translateX(25vw) rotate(10deg) scale(1); /* Ruota verso l'interno */
+  }
+  65% {
+    transform: translateX(25vw) rotate(10deg) scale(0.95);
+  }
+  70% {
+    transform: translateX(25vw) rotate(10deg) scale(1);
+  }
+  100% {
+    transform: translateX(0) rotate(0) scale(1);
+  }
+}
+
+@keyframes cardClashRight {
+  0% {
+    transform: translateX(120vw) rotate(15deg);
+    opacity: 0;
+  }
+  30% {
+    transform: translateX(50vw) rotate(5deg);
+    opacity: 1;
+  }
+  45% {
+    transform: translateX(-15vw) rotate(0deg) scale(1.1);
+  }
+  55% {
+    transform: translateX(-25vw) rotate(-10deg) scale(1); /* Ruota verso l'interno */
+  }
+  65% {
+    transform: translateX(-25vw) rotate(-10deg) scale(0.95);
+  }
+  70% {
+    transform: translateX(-25vw) rotate(-10deg) scale(1);
+  }
+  100% {
+    transform: translateX(0) rotate(0) scale(1);
+  }
+}
+
+@keyframes vsAppear {
+  0%,
+  55% {
+    opacity: 0;
+    transform: scale(3) rotate(-10deg);
+  }
+  65% {
+    opacity: 1;
+    transform: scale(1.5) rotate(5deg);
+  }
+  75% {
+    transform: scale(1.2) rotate(-3deg);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) rotate(0);
+  }
+}
+
+.animate-card-clash-left {
+  animation: cardClashLeft 2s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+.animate-card-clash-right {
+  animation: cardClashRight 2s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+.animate-vs-appear {
+  animation: vsAppear 1.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  animation-delay: 0.5s;
+}
