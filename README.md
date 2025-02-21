@@ -10,56 +10,56 @@
 
 ### ✅ Completed
 
-📌 Updated RoleBox and Choice logic 🎯
+#### 📌 Updated RoleBox and Choice Logic 🎯
 
-- Removed "Assign" button in RandomizationBox.jsx, allowing direct role assignment.
-- Added automatic role highlighting in RoleBox.jsx, only for unassigned roles when a character is ready.
+- Removed the **"Assign"** button in `RandomizationBox.jsx`, allowing direct role assignment.
+- Added automatic role highlighting in `RoleBox.jsx`, highlighting unassigned roles.
 - Improved user flow:
-  -Players now click directly on a role to assign the generated character.
-  -Highlighting disappears once a role is filled.
-  -"TO BATTLE!" button activates when all roles are assigned.
+  - Players click directly on a role to assign the generated character.
+  - Highlight disappears once a role is filled.
+  - "TO BATTLE!" button activates when all roles are assigned.
 
-### **Start Menu UI**
+#### **Start Menu UI**
 
 - Three main buttons: `Start`, `How to Play`, `Characters`
-- **Characters button now opens a modal** with a character carousel
+- **Characters button opens a modal** with a character carousel
 - **Audio & Settings buttons fully functional**
 - **Fixed audio mute/unmute sync issue** (state updates correctly before muting)
 
-### **Characters Page**
+#### **Characters Page**
 
-- **New modal-based UI** with a **carousel**
-- **Displays all characters** with their name, class, and special ability
+- **Modal-based UI** with a **carousel**
+- Displays all characters with their name, class, and special ability
 - Navigation with `◀ Prev | ▶ Next` buttons
-- **Uses images from `public/char-cards/` for easy management**
-- **Background blur effect** on Start Menu when open
-- **Proper scrolling behavior** (no skipping, locked at first/last character)
+- Uses images from `public/char-cards/` for easy management
+- Background blur effect on Start Menu when open
+- Proper scrolling behavior (locked at first/last character)
 
-### **Character Selection UI**
+#### **Character Selection UI**
 
-- Two random character image slots
+- Two random character slots
 - Randomizer button
 - Skip button (one-time use per player)
-- Five role selection slots per player (Captain, Vice Captain, Healer, Support x2)
+- Five role selection slots (Captain, Vice Captain, Healer, Support x2)
 - Character name & special move display
 - Contained layout for better UI structure
 
-### **Battle Screen UI & Logic**
+#### **Battle Screen UI & Logic**
 
-- Display of 1v1 role-based matchups
-- Winner and loser indication placeholders
-- **Battle logic implemented** based on assigned roles and stats
-- **Special moves now applied correctly** if conditions are met
-- **Battle output text area** for match descriptions
+- Displays 1v1 role-based matchups
+- Winner and loser indication through opacity changes
+- **Battle logic implemented** based on roles and stats
+- **Special moves applied correctly**
+- **Battle output text area** for descriptions of match outcomes
 - Animated background (GIF or CSS animations)
 - Background music integration
-- Improved button interactions & hover effects
-- Adjustable game settings (only volume for now)
+- Improved button interactions and hover effects
+- Adjustable game settings (currently volume control)
 
-### **How to Play Modal**
+#### **How to Play Modal**
 
-- **New modal added with a simple ruleset**
-- Brief step-by-step instructions in a compact format
+- Added a **new modal** with a simple ruleset
+- Step-by-step instructions presented compactly
 
 ---
 
@@ -67,13 +67,13 @@
 
 ### **Enhanced UI/UX**
 
-- **Refining character selection aesthetics**
-- **Better transition effects for carousel & modals**
-- **Improved mobile responsiveness**
+- Refining character selection aesthetics
+- Smoother transition effects for carousel and modals
+- Improved mobile responsiveness
 
 ### **Settings Page**
 
-- Additional adjustable settings (game speed, animations toggle, etc.)
+- Additional adjustable settings (e.g., game speed, animation toggle)
 
 ---
 
@@ -81,20 +81,20 @@
 
 ### **Game Logic Enhancements**
 
-- Balancing of character stats
+- Better character stat balancing
 - Visual indication of winners/losers per matchup
-- Dynamic battle output text improvements
+- Improved battle output text for clarity
 
 ### **Audio & Visual Effects**
 
-- Sound effects for actions (randomizing, selecting, battle events)
+- Sound effects for key actions (randomizing, selecting, battle events)
 - Battle animations for better engagement
 
 ### **Advanced Features (Future Scope)**
 
-- Player customization (choose character skins/avatars)
+- Player customization (skins/avatars for characters)
 - Multiplayer functionality
-- Additional game modes & difficulty levels
+- Additional game modes and difficulty levels
 
 ---
 
@@ -102,31 +102,39 @@
 
 - **Frontend:** React (Vite)
 - **Styling:** Tailwind CSS
-- **State Management:** Zustand (to be integrated)
-- **Animations:** GSAP (to be integrated)
-- **Audio Handling:** Howler.js **(now fully working with mute toggle)**
-- **Carousel Library:** Custom-built React carousel for characters
+- **State Management:** Zustand (planned integration)
+- **Animations:** GSAP (planned integration)
+- **Audio Handling:** Howler.js (fully functional with mute toggle)
+- **Carousel Library:** Custom-built React carousel
 
 ---
 
 ## 🔧 Setup & Contribution Guide
 
 1. **Clone the repository:**
-   ```sh
+
+   ```bash
    git clone https://github.com/your-repo/anime-battle.git
    ```
+
 2. **Navigate into the project folder:**
-   ```sh
+
+   ```bash
    cd anime-battle
    ```
+
 3. **Install dependencies:**
-   ```sh
+
+   ```bash
    npm install
    ```
+
 4. **Start the development server:**
-   ```sh
+
+   ```bash
    npm run dev
    ```
+
 5. **Contribute by following the issue tracker and making pull requests.**
 
 ---
@@ -135,15 +143,15 @@
 
 - **New:** Character carousel implemented inside a modal in the Start Menu.
 - **New:** Special moves now applied correctly during battles.
-- **Ensure `postcss.config.js` is correctly set up for Tailwind CSS.**
-- **Keep component structure modular for scalability.**
-- **Follow best practices for state management and component reusability.**
+- Ensure `postcss.config.js` is set up for Tailwind CSS.
+- Keep the component structure modular for scalability.
+- Follow best practices for state management and reusability.
 
 ---
 
 ## 📢 Next Steps
 
-🔥 **Tomorrow:** Refining animations and UI improvements for carousel & role selection.
+🔥 **Tomorrow:** Refining animations and UI improvements for carousel and role selection.
 
 ---
 
@@ -151,6 +159,6 @@
 
 **Commit message suggestion:**
 
-```sh
-git commit -m "feat: implemented How to Play modal, improved battle logic, and applied special moves dynamically"
+```bash
+feat: implemented How to Play modal, improved battle logic, and applied special moves dynamically
 ```
