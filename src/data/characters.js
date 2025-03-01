@@ -180,7 +180,7 @@ const characters = [
       "Lethal Pacifist - Magic and Leadership increase by 15% when fighting a Mage.",
   },
   {
-    name: "Asuka Soryu Langley",
+    name: "Asuka S. Langley",
     series: "Neon Genesis Evangelion",
     img: "/asuka-card.png",
     strength: 45,
@@ -450,6 +450,54 @@ const characters = [
     subType: "Citizen",
     specialMove:
       "Ultimate Sentence - Decrease all values of a enemy by 25% at the beginning of the fight.",
+  },
+  {
+    name: "Escanor",
+    series: "Seven Deadly Sins",
+    img: "/escanor-card.png",
+    strength: 85,
+    health: 75,
+    magic: 60,
+    leadership: 55,
+    subType: "Fighter",
+    specialMove:
+      "Sunshine - Increases his strength value by 25% if facing a carachter with a higher strength value.",
+  },
+  {
+    name: "Megumin",
+    series: "Konosuba!",
+    img: "/megumin-card.png",
+    strength: 20,
+    health: 40,
+    magic: 86,
+    leadership: 70,
+    subType: "Mage",
+    specialMove:
+      "Exprosion - At the beginning of the battle decrease the health of the enemy tank by 20%.",
+  },
+  {
+    name: "Shadow",
+    series: "Shadow Garden",
+    img: "/shadow-card.png",
+    strength: 30,
+    health: 40,
+    magic: 20,
+    leadership: 88,
+    subType: "Civilian",
+    specialMove:
+      "Mastermind - At the beginning of the battle gives a 10% bonus to all stats to all allies",
+  },
+  {
+    name: "Maomao",
+    series: "Apothecary diaries",
+    img: "/maomao-card.png",
+    strength: 20,
+    health: 20,
+    magic: 75,
+    leadership: 20,
+    subType: "Civilian",
+    specialMove:
+      "Herbal medicine - at the beginning of the battle prevent ally tank from dying, scoring a draw in case of tank's loss",
   },
 ];
 

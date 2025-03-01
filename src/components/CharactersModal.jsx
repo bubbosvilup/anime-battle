@@ -1,3 +1,4 @@
+import { image } from "framer-motion/client";
 import { useState } from "react";
 import { AiOutlineClose, AiOutlineLeft, AiOutlineRight } from "react-icons/ai";
 
@@ -153,6 +154,22 @@ const characters = [
   {
     name: "Light Yagami",
     image: "/light-card.png",
+  },
+  {
+    name: "Escanor",
+    image: "/escanor-card.png",
+  },
+  {
+    name: "Megumin",
+    image: "/megumin-card.png",
+  },
+  {
+    name: "Shadow",
+    image: "/shadow-card.png",
+  },
+  {
+    name: "Maomao",
+    image: "/maomao-card.png",
   },
 ];
 

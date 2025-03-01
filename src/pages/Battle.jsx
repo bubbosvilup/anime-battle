@@ -85,7 +85,7 @@ export default function Battle() {
 
     setCurrentMatchup(matchup);
 
-    // Ritardo iniziale prima di mostrare il modale
+    // wait 2 seconds before showing the modal
     setTimeout(() => {
       setShowModal(true);
 
@@ -112,13 +112,13 @@ export default function Battle() {
       }
 
       setBattleEvents((prev) => [...prev, eventDescription]);
-    }, 2000); // 2 secondi di attesa prima del modale
+    }, 2000); // 2 seconds
   };
 
   const handleModalClose = () => {
     setShowModal(false);
 
-    // Aspetta 2 secondi dopo la chiusura del modale prima del prossimo duello
+    //waits 2 seconds before opening the next one
     setTimeout(() => {
       setIsAnimating(false);
       setCurrentMatchup(null);
